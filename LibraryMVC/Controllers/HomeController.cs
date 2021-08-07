@@ -54,7 +54,7 @@ namespace LibraryMVC.Controllers
             context.SaveChanges();
 
             return View("KitapListele", context.Kitaplar.ToList());
-           
+
         }
 
 
@@ -108,15 +108,22 @@ namespace LibraryMVC.Controllers
 
 
             var silinecek = context.Uyeler.Find(Id);
-            context.Uyeler.Remove(silinecek);
-
 
             var odunc = (from odun in context.Oduncler
                          where odun.Uye.Id == Id
                          select odun).FirstOrDefault();
 
-            odunc.Kitap.StokDurumu += 1;
-            context.Oduncler.Remove(odunc);
+            if (odunc == null)
+            {
+                context.Uyeler.Remove(silinecek);
+            }
+            else
+            {
+                context.Uyeler.Remove(silinecek);
+                odunc.Kitap.StokDurumu += 1;
+                context.Oduncler.Remove(odunc);
+            }
+
 
             context.SaveChanges();
 
@@ -129,7 +136,7 @@ namespace LibraryMVC.Controllers
             var guncellenecek = context.Uyeler.Find(Id);
             return View(guncellenecek);
         }
-        
+
         [HttpPost]
         public ActionResult UyeGuncelle(Uye entity)
         {
@@ -167,7 +174,7 @@ namespace LibraryMVC.Controllers
             var guncellenecek = context.Kitaplar.Find(Id);
             return View(guncellenecek);
         }
-        
+
         [HttpPost]
         public ActionResult KitapGuncelle(Kitap entity)
         {
