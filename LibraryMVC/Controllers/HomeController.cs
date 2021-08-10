@@ -40,6 +40,7 @@ namespace LibraryMVC.Controllers
                          where tur.Id == entity.TurID
                          select tur).FirstOrDefault();
 
+
             yeniKitap.Tur = turid;
             yeniKitap.TurID = entity.TurID;
             yeniKitap.KitapAdi = entity.KitapAdi;
@@ -155,10 +156,25 @@ namespace LibraryMVC.Controllers
         public ActionResult KitapSil(int Id)
         {
             var silinecek = context.Kitaplar.Find(Id);
-            context.Kitaplar.Remove(silinecek);
+            var odunc = (from odun in context.Oduncler
+                         where odun.Kitap.Id == Id
+                         select odun).FirstOrDefault();
+
+
+            if (odunc==null)
+            {
+                context.Kitaplar.Remove(silinecek);
+            } 
+            else
+            {
+                context.Kitaplar.Remove(silinecek);
+                context.Oduncler.Remove(odunc);
+            }
+
             context.SaveChanges();
             return RedirectToAction("KitapListele");
         }
+
         [HttpGet]
         public ActionResult KitapGuncelle(int Id)
 
