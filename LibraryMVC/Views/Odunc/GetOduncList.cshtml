@@ -1,0 +1,46 @@
+﻿@using EntityLayer.Concrete
+@model List<Odunc>
+@{
+    ViewBag.Title = "GetOduncList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Kitap Ödünç Durumları</h2>
+
+
+<table class="table table-striped">
+
+    <thead>
+        <tr>
+            <th>Kitap Adı</th>
+            <th>Kitap Yazarı</th>
+            <th>Üye Sicil Numarası</th>
+            <th>Ödünç Alan Üye</th>
+            <th>Üye Ceza</th>
+            <th>Ödünç Alınan Tarih</th>
+            <th>Teslim Edilecek Tarih</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (item.IsActive == true)
+            {
+        <tr>
+            <td>@item.Kitap.KitapAdi</td>
+            <td>@item.Kitap.KitapYazari</td>
+            <td>@item.Uye.SicilNo</td>
+            <td>@item.Uye.UyeAdi @item.Uye.UyeSoyadi</td>
+            <td>@item.Uye.Ceza</td>
+            <td>@item.AlinanTarih</td>
+            <td>@item.TeslimEdilecekTarih.ToString("dddd,dd MM yyyy")</td>
+            <td>@Html.ActionLink("İade Et", "KitapIade", new { id = item.Id }, new { @class = "btn btn-success" })</td>
+        </tr>
+            }
+
+        }
+
+    </tbody>
+</table>
+

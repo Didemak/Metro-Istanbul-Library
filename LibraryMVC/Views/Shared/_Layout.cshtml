@@ -1,18 +1,152 @@
 ﻿<!DOCTYPE html>
+    <html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+                <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>@ViewBag.Title - Kütüphane Uygulaması</title>
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+            <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+            <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+            <scr src="~/Scripts/modernizr-2.8.3.js"></scr>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+                margin: 0;
+            }
+
+            .navbar {
+                overflow: hidden;
+                background-color: #113e67;
+                min-height: 70px;
+            }
+
+                .navbar a {
+                    float: left;
+                    font-size: 16px;
+                    color: white;
+                    text-align: center;
+                    padding: 14px 16px;
+                    text-decoration: none;
+                }
+
+            .subnav {
+                float: left;
+                overflow: hidden;
+            }
+
+                .subnav .subnavbtn {
+                    font-size: 16px;
+                    border: none;
+                    outline: none;
+                    color: white;
+                    padding: 14px 16px;
+                    background-color: inherit;
+                    font-family: inherit;
+                    margin: 0;
+                }
+
+                .navbar a:hover, .subnav:hover .subnavbtn {
+                    background-color: #113e67;
+                }
+
+            .subnav-content {
+                display: none;
+                position: absolute;
+                left: 0;
+                background-color: #d01e26;
+                width: 100%;
+                z-index: 1;
+            }
+
+                .subnav-content a {
+                    float: left;
+                    color: white;
+                    text-decoration: none;
+                }
+
+                    .subnav-content a:hover {
+                        background-color: #eee;
+                        color: black;
+                    }
+
+            .subnav:hover .subnav-content {
+                display: block;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="navbar" style="margin-top:-50px">
+            <a class="brand hidden-print pull-left" style="margin-left:30px" href="/">
+                <img src="~/images/Istanbul_Metro_Logo.png" width="70" height="70" alt="Logo" />
+            </a>
+            <div class="subnav" style="margin-left:70px;margin-top:10px">
+                <a href="/Home/Index">Ana Sayfa</a>
+
+
+                <button class="subnavbtn">Kitap İşlemleri <i class="fa fa-caret-down"></i></button>
+                <div class="subnav-content">
+                    <a href="/Kitap/AddKitap">Kitap Ekle</a>
+                    <a href="/Kitap/GetKitapList">Kitap Listele</a>
+                </div>
+            </div>
+            <div class="subnav" style="margin-top:10px">
+                <button class="subnavbtn">Üye İşlemleri <i class="fa fa-caret-down"></i></button>
+                <div class="subnav-content">
+                    <a href="/Uye/AddUye">Üye Ekle</a>
+                    <a href="/Uye/GetUyeList">Üye Listele</a>
+                </div>
+            </div>
+            <div class="subnav" style="margin-top:10px">
+                <button class="subnavbtn">Tür İşlemleri <i class="fa fa-caret-down"></i></button>
+                <div class="subnav-content">
+                    <a href="/Tur/AddTur">Tür Ekle</a>
+                    <a href="/Tur/GetTurList">Tür Listele</a>
+                </div>
+            </div>
+            <a href="/Odunc/GetOduncList" style="margin-top:10px">Ödünç Listesi</a>
+            <div class="subnav" style="margin-top:10px">
+                <button class="subnavbtn">Geçmiş Listesi <i class="fa fa-caret-down"></i></button>
+                <div class="subnav-content">
+                    <a href="/Kitap/GecmisListele">Kitap Geçmiş Listesi</a>
+                    <a href="/Uye/GecmisListele">Üye Geçmiş Listesi</a>
+                    <a href="/Odunc/GecmisListele">Ödünç Geçmiş Listesi</a>
+                </div>
+            </div>
+            <a href="/Istatistik/Index" style="margin-top:10px">İstatistik</a>
+        </div>
+
+        <div class="col-md-12">
+            @RenderBody()
+        </div>
+        @RenderSection("script",false)
+    </body>
+    </html>
+
+
+@*<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Kütüphane Uygulaması</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap-theme.min.css" integrity="sha384-6pzBo3FDv/PJ8r2KRkGHifhEocL+1X2rVCTTkUfGk7/0pbek5mMa1upzvWbrUbOZ" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <scr src="~/Scripts/modernizr-2.8.3.js"></scr>
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar navbar-inverse navbar-fixed-top" >
         <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <div class="navbar-header" >
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" >
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -20,12 +154,24 @@
                 @Html.ActionLink("Kütüphane", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Kitap Ekle", "KitapEkle", "Home")</li>
-                    <li>@Html.ActionLink("Kitap Listesi", "KitapListele", "Home")</li>
-                    <li>@Html.ActionLink("Üye Ekle", "UyeEkle", "Home")</li>
-                    <li>@Html.ActionLink("Üye Listesi", "UyeListele", "Home")</li>
-                    <li>@Html.ActionLink("Ödünç Listesi", "OduncListele", "Home")</li>
+                <ul class="nav navbar-nav" >
+                    <li>@Html.ActionLink("Kitap Ekle", "AddKitap", "Kitap")</li>
+                    <li>@Html.ActionLink("Kitap Listesi", "GetKitapList", "Kitap")</li>
+                    <li>@Html.ActionLink("Üye Ekle", "AddUye", "Uye")</li>
+                    <li>@Html.ActionLink("Üye Listesi", "GetUyeList", "Uye")</li>
+                    <li>@Html.ActionLink("Tür Ekle", "AddTur", "Tur")</li>
+                    <li>@Html.ActionLink("Tür Listele", "GetTurList", "Tur")</li>
+                    <li>@Html.ActionLink("Ödünç Listesi", "GetOduncList", "Odunc")</li>
+                    <li class="dropdown" >
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            Geçmiş Listesi
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" >
+                            <li>@Html.ActionLink("Kitap Geçmişi", "GecmisListele", "Kitap")</li>
+                            <li>@Html.ActionLink("Üye Geçmişi", "GecmisListele", "Uye")</li>
+                            <li>@Html.ActionLink("Ödünç Geçmişi", "GecmisListele", "Odunc")</li>
+                        </ul>
 
 
                 </ul>
@@ -33,9 +179,9 @@
         </div>
     </div>
 
-    <div class="container body-content">
+    <div class="container body-content" >
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12" >
                 @RenderBody()
             </div>
 
@@ -50,4 +196,4 @@
     <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
 </body>
-</html>
+</html>*@

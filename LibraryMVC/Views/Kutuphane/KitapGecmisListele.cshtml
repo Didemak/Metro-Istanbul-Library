@@ -1,0 +1,46 @@
+﻿@model IEnumerable<LibraryMVC.Models.Kitap>
+@{
+    ViewBag.Title = "KitapGecmisSil";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Kitap Geçmişi</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Kitap Adı</th>
+            <th>Kitap Yazarı</th>
+            <th>Açıklama</th>
+            <th>Baskı Yılı</th>
+            <th>Eklenme Tarihi</th>
+            <th>Yayınevi</th>
+            <th>Türü</th>
+            <th>Stok Adedi</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            if (item.IsActive == false)
+            {
+                <tr>
+                    <td>@item.KitapAdi</td>
+                    <td>@item.KitapYazari</td>
+                    <td>@item.Aciklama</td>
+                    <td>@item.BaskiYil</td>
+                    <td>@item.EklenmeTarihi</td>
+                    <td>@item.YayinEvi</td>
+                    <td>@item.Tur.TurAdi</td>
+                    <td>@item.StokDurumu</td>
+                    <td>@Html.ActionLink("SİL", "KitapGecmisSil", new { id = item.Id }, new { @class = "btn btn-danger" })</td>
+                </tr>
+            }
+        }
+
+    </tbody>
+</table>
+
+

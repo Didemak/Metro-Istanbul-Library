@@ -14,6 +14,7 @@ namespace LibraryMVC.Models
         public string TelefonNo { get; set; }
         public string Cinsiyet{ get; set; }
         public string Email { get; set; }
-        
+        public bool IsActive { get; set; }
+        public virtual List<Odunc> Oduncler { get; set; }
     }
 }

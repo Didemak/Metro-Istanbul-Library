@@ -1,0 +1,35 @@
+﻿@using EntityLayer.Concrete
+@model List<Tur>
+@{
+    ViewBag.Title = "GetTurList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Tür Listesi</h2>
+
+
+
+<table class="table table-striped">
+
+    <br />
+    <thead>
+        <tr>
+            <th>Tür Adı</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.TurAdi</td>
+                @*<td><a href="/Tur/DeleteTur/@item.Id" class="btn btn-danger">SİL</a></td>*@
+
+                <td><a href="/Tur/EditTur/@item.Id" class="btn btn-success">GÜNCELLE</a></td>
+
+            </tr>
+        }
+
+    </tbody>
+</table>
+

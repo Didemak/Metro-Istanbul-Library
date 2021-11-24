@@ -1,3 +1,4 @@
+using LibraryMVC.Tasks.Triggers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace LibraryMVC
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            CezaArtirmaDusurme.Baslat();
         }
     }
 }
